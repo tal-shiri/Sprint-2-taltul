@@ -1,0 +1,20 @@
+body {
+  text-align: center;
+}
+
+button {
+  margin: 0.5em;
+  cursor: pointer;
+}
+
+canvas {
+  outline: 1px solid green;
+  display: block;
+  margin: auto;
+}
+
+/* .canvas-container {
+  width: 60vw;
+  height: 60vh;
+  margin: .5em auto;
+} */
