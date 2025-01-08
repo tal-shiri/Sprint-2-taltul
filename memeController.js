@@ -1,5 +1,7 @@
 var gElCanvas
 var gCtx
+//
+
 
 function onInit() {
   gElCanvas = document.querySelector('canvas')
