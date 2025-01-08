@@ -4,10 +4,15 @@ var gMeme = {
   selectedLineIdx: 0,
   lines: [
     {
-      txt: 'I sometimes eat Falafel'
-      ,
+      txt: 'I sometimes eat Falafel',
       size: 20,
       color: 'red'
+    }
+
+    , {
+      txt: 'taltul',
+      size: 30,
+      color: 'green'
     }
   ]
 }
@@ -23,11 +28,39 @@ function getImages() {
 }
 
 function setLineTxt(txt) {
-  gMeme.lines[0].txt = txt
+  gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
 
 
 function setImg(selectedImgId) {
   gMeme.selectedImgId = selectedImgId
+}
+
+function setColor(color) {
+  gMeme.lines[gMeme.selectedLineIdx].color = color
+}
+
+function changeFont(symbol) {
+  console.log(symbol);
+  // if (gMeme.lines[0].size < 10 || gMeme.lines[0].size > 40) return
+
+  if (symbol === '+') gMeme.lines[gMeme.selectedLineIdx].size += 2
+  else gMeme.lines[gMeme.selectedLineIdx].size -= 2
+}
+
+function addLineText() {
+  const line = {
+    txt: 'Text',
+    size: 16,
+    color: 'black'
+  }
+  gMeme.lines.push(line)
+  gMeme.selectedLineIdx = gMeme.lines.length - 1
+}
+
+function switchLine() {
+  console.log(gMeme.selectedLineIdx);
+
+  (gMeme.lines.length - 1 === gMeme.selectedLineIdx) ? gMeme.selectedLineIdx = 0 : gMeme.selectedLineIdx++
 }

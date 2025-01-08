@@ -23,9 +23,15 @@
         <section class="editor">
           <label for="meme-text">Enter your meme text:</label>
           <input type="text" id="meme-text" name="meme-text" placeholder="Your Text" oninput="onEditText(this)">
+          <input type="color" id="favcolor" value="#ff0000" oninput="onSetColor(this)">
+          <button class="increase-btn" onClick="onIncreaseFont()">A+</button>
+          <button class="decrease-btn" onClick="onDecreaseFont()">A-</button>
+          <button class="addLine-btn" onClick="onAddText()">+</button>
+          <button class="switchLine-btn" onClick="onSwitchLine()">&#8645</button>
+
         </section>
 
-        <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image from Canvas</a>
+        <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image</a>
 
       </div>
 
