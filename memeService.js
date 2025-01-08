@@ -6,13 +6,16 @@ var gMeme = {
     {
       txt: 'I sometimes eat Falafel',
       size: 20,
-      color: 'red'
+      color: 'red',
+      // selcted: true
     }
 
     , {
       txt: 'taltul',
       size: 30,
-      color: 'green'
+      color: 'green',
+      // selcted: false
+
     }
   ]
 }
@@ -42,11 +45,14 @@ function setColor(color) {
 }
 
 function changeFont(symbol) {
-  console.log(symbol);
-  // if (gMeme.lines[0].size < 10 || gMeme.lines[0].size > 40) return
+  const selctedLine = gMeme.lines[gMeme.selectedLineIdx]
+  console.log(selctedLine.size);
+  // max min size
+  if (selctedLine.size < 6) selctedLine.size = 6
+  if (selctedLine.size > 40) selctedLine.size = 40
 
-  if (symbol === '+') gMeme.lines[gMeme.selectedLineIdx].size += 2
-  else gMeme.lines[gMeme.selectedLineIdx].size -= 2
+  if (symbol === '+') selctedLine.size += 2
+  else selctedLine.size -= 2
 }
 
 function addLineText() {
@@ -61,6 +67,5 @@ function addLineText() {
 
 function switchLine() {
   console.log(gMeme.selectedLineIdx);
-
   (gMeme.lines.length - 1 === gMeme.selectedLineIdx) ? gMeme.selectedLineIdx = 0 : gMeme.selectedLineIdx++
 }

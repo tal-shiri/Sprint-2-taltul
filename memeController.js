@@ -34,8 +34,6 @@ function renderMeme() {
       const color = line.color
       const size = line.size
 
-      console.log(txt);
-
       if (index === 0) {
         x = gElCanvas.width / 2
         y = gElCanvas.height / 7
@@ -48,9 +46,24 @@ function renderMeme() {
         y = gElCanvas.height / 2
       }
 
+      if (index === gMeme.selectedLineIdx) {
+        let padding = 6
+        const textMetrics = gCtx.measureText(txt);
+        const textWidth = textMetrics.width + size * 2;
+        const textHeight = size; // Approximation for text height
+        // Draw rectangle
+        const rectX = x - textWidth / 2 - padding; // Start X for rectangle
+        const rectY = y - textHeight + (padding / 2); // Start Y for rectangle
+        const rectWidth = textWidth + 2 * padding; // Rectangle width
+        const rectHeight = textHeight + padding * 2; // Rectangle height
+
+        gCtx.strokeStyle = 'black'; // Rectangle color
+        gCtx.lineWidth = 2; // Rectangle border width
+        gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+      }
+
 
       drawText(txt, size, color, x, y)
-
     })
 
   }
@@ -105,6 +118,7 @@ function onAddText() {
 
 function onSwitchLine() {
   switchLine()
+  renderMeme()
 
 }
 
