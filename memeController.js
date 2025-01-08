@@ -54,3 +54,10 @@ function onEditText(elInput) {
 
 
 }
+
+function onDownloadImg(elLink) {
+  console.log(elLink);
+
+  const imgContent = gElCanvas.toDataURL('image/jpeg')
+  elLink.href = imgContent
+}
