@@ -11,6 +11,7 @@ var gMeme = {
       color: 'red',
       pos: { x: 200, y: 58 },
       id: 0,
+      aling: 'center',
       isDrag: true
     }
 
@@ -20,6 +21,7 @@ var gMeme = {
       color: 'green',
       pos: { x: 200, y: 350 },
       id: 1,
+      aling: 'center',
       isDrag: false
 
     }
@@ -72,6 +74,7 @@ function addLineText(pos = { x: 0, y: 0 }) {
     size: 16,
     color: 'black',
     id: gMeme.lines.length,
+    aling: 'center',
     isDrag: true
   }
   gMeme.lines.push(line)
@@ -79,16 +82,25 @@ function addLineText(pos = { x: 0, y: 0 }) {
 }
 
 function switchLine() {
-  console.log(gMeme.selectedLineIdx);
   (gMeme.lines.length - 1 === gMeme.selectedLineIdx) ? gMeme.selectedLineIdx = 0 : gMeme.selectedLineIdx++
 }
 
-function isLineClicked(clickedPos) {
+function setAlignText(selctor) {
+  const selctedLine = gMeme.lines[gMeme.selectedLineIdx]
+  console.log(selctor);
 
-  const line = gMeme.lines.find(line => {
-    return offsetX > star.x && offsetX < star.x + BAR_WIDTH &&
-      offsetY > star.y && offsetY < star.y + star.rate
-  })
+  switch (selctor) {
+    case 'center':
+      selctedLine.aling = 'center'
+      break;
+    case 'right':
+      selctedLine.aling = 'right'
+      break;
+    case 'left':
+      selctedLine.aling = 'left'
+      break;
+    default:
+      break;
+  }
 
-  // const { pos } = gMeme[]
 }

@@ -28,17 +28,18 @@ function renderMeme() {
 
 
     meme.lines.forEach((line, index) => {
-      const { txt, color, size, pos } = line
+      const { txt, color, size, pos, aling } = line
 
       console.log(`Drawing line:`)
       console.log(line)
 
       console.log(`Selected line: ` + gMeme.selectedLineIdx)
+      drawText(txt, size, color, aling, pos.x, pos.y)
+
       if (index === gMeme.selectedLineIdx) {
-        drawRectangle(txt, size, pos.x, pos.y)
+        drawRectangle(txt, size, aling, pos.x, pos.y)
       }
 
-      drawText(txt, size, color, pos.x, pos.y)
     })
 
   }
@@ -46,29 +47,39 @@ function renderMeme() {
 
 }
 
-function drawRectangle(txt, size, x, y) {
+function drawRectangle(txt, size, align, x, y) {
   const textMetrics = gCtx.measureText(txt)
   const textWidth = textMetrics.width
   const textHeight = size
+  let rectX, rectY, rectWidth, rectHeight
+
+  rectWidth = textWidth;
+  rectHeight = textHeight
   console.log(textMetrics)
-
-  const rectX = x - textWidth / 2
-  const rectY = y - textHeight / 2
-  const rectWidth = textWidth
-  const rectHeight = textHeight
-
+  if (align === 'left') {
+    rectX = x
+    rectY = y - textHeight / 2
+  } else if (align === 'right') {
+    rectX = x - textWidth
+    rectY = y - textHeight / 2
+  } else {
+    rectX = x - textWidth / 2
+    rectY = y - textHeight / 2
+  }
   gCtx.lineWidth = 2
   gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
 
 }
 
 
-function drawText(text, size, color, x, y) {
+function drawText(text, size, color, aling, x, y) {
+  console.log(size);
+
   gCtx.lineWidth = 2
   // gCtx.strokeStyle = 'brown'
   gCtx.fillStyle = color
-  gCtx.font = `${size}px Aria`
-  gCtx.textAlign = 'center'
+  gCtx.font = `${size}px Ariel`
+  gCtx.textAlign = aling
   gCtx.textBaseline = 'middle'
 
   gCtx.fillText(text, x, y)
@@ -85,6 +96,7 @@ function onIncreaseFont() {
   changeFont('+')
   renderMeme()
 }
+
 function onDecreaseFont() {
   changeFont('-')
   renderMeme()
@@ -136,11 +148,8 @@ function onMove(ev) {
   })
 
   console.log(selctedLine)
-
-
-
-
 }
+
 function onDown(ev) {
   const { offsetX, offsetY } = ev;
 
@@ -172,7 +181,11 @@ function onDown(ev) {
 }
 
 
+function onSetAlign(selctor) {
+  setAlignText(selctor)
+  renderMeme()
 
+}
 
 
 function getEvPos(ev) {
