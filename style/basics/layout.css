@@ -1,7 +1,7 @@
+/* Gallery-layout */
+
 .gallery-content {
     margin-top: 40px;
-
-
 }
 
 .gallery-imges {
@@ -13,4 +13,38 @@
 .gallery-content .gallery-imges>img {
     width: 200px;
     height: 200px;
+}
+
+/* Header & Footer  */
+
+.main-header,
+.main-footer {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    background: lightgray;
+    padding: 1.5em;
+}
+
+.main-footer>.rights {
+    grid-column: 3;
+}
+
+.main-header>.main-nav {
+    display: flex;
+    grid-column: 3;
+    justify-content: space-evenly;
+
+}
+
+.meme-editor {
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr 50px;
+    margin: 2.5em;
+}
+
+/* Editor */
+
+.editor {
+    display: grid;
+    place-items: center;
 }

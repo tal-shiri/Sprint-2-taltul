@@ -11,6 +11,7 @@ canvas {
   outline: 1px solid green;
   display: block;
   margin: auto;
+  grid-column: 2;
 }
 
 /* .canvas-container {

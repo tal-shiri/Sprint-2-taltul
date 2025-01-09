@@ -9,24 +9,41 @@
 </head>
 
 <body onload="onInit()">
-  <header>
+  <header class="main-header">
     <div class="logo">Logo</div>
-    <div class="gallery">Gallery</div>
-    <div class="about"></div>
+    <nav class="main-nav">
+      <div class="gallery">Gallery</div>
+      <div class="about">About</div>
+    </nav>
+
   </header>
 
   <main>
 
     <section class="meme-editor">
-      <div class="canvas-container">
-        <canvas width="400" height="400" onmousemove="onMove(event)" onmousedown="onDown(event)"></canvas>
-        <section class="editor">
+      <canvas width="400" height="400" onmousemove="onMove(event)" onmousedown="onDown(event)"></canvas>
+
+      <section class="editor">
+        <div class="first-line">
           <label for="meme-text">Enter your meme text:</label>
           <input type="text" id="meme-text" name="meme-text" placeholder="Your Text" oninput="onEditText(this)">
-          <input type="color" id="favcolor" value="#ff0000" oninput="onSetColor(this)">
+        </div>
+
+        <div class="second-line">
+          <button class="switchLine-btn" onClick="onSwitchLine()">&#8645</button>
+          <button class="addLine-btn" onClick="onAddText()">+</button>
+          <button class="fas fa-trash" aria-hidden="false" onclick="onRemoveLine()"></button>
+        </div>
+
+        <div class="third-line">
           <button class="increase-btn" onClick="onIncreaseFont()">A+</button>
           <button class="decrease-btn" onClick="onDecreaseFont()">A-</button>
-          <button class="addLine-btn" onClick="onAddText()">+</button>
+          <button class="aling-left-btn" onclick="onSetAlign('left')"><img src="img/align-left.png"></button>
+          <button class="aling-center-btn" onclick="onSetAlign('center')"><img src="img/aling-center.png"></button>
+          <button class="aling-right-btn" onclick="onSetAlign('right')"><img src="img/align-right.png"></button>
+        </div>
+
+        <div class="fourth-line">
           <select name="font-select" id="" onchange="onSetFont()">
             <option value="">Select Font</option>
             <option value="Ariel">Ariel</option>
@@ -39,25 +56,22 @@
 
 
           </select>
+          <input type="color" id="favcolor" value="#ff0000" oninput="onSetColor(this)">
+        </div>
 
+        <div class="fifth-line">
           <button class="move-up-btn" onclick="onMoveStep('up')">⇧</button>
           <button class="move-down-btn" onclick="onMoveStep('down')">⇩</button>
-          <button class="fas fa-trash" aria-hidden="false" onclick="onRemoveLine()"></button>
+        </div>
 
-          <button class="aling-center-btn" onclick="onSetAlign('center')"><img src="img/aling-center.png" alt=""
-              srcset=""></button>
-          <button class="aling-left-btn" onclick="onSetAlign('left')"><img src="img/align-left.png" alt=""
-              srcset=""></button>
-          <button class="aling-right-btn" onclick="onSetAlign('right')"><img src="img/align-right.png" alt=""
-              srcset=""></button>
+        <div class="share-container">
+          <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image</a>
+        </div>
 
-          <button class="switchLine-btn" onClick="onSwitchLine()">&#8645</button>
+      </section>
 
-        </section>
 
-        <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image</a>
 
-      </div>
 
     </section>
 
@@ -84,7 +98,7 @@
 
   </main>
 
-  <footer>
+  <footer class="main-footer">
     <div class="logo">Blogin</div>
     <small class="rights">all rights reserved 2025</small>
   </footer>
