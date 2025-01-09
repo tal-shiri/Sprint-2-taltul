@@ -1,20 +1,26 @@
 var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] }, { id: 2, url: 'img/2.jpg', keywords: ['funny', 'cat'] }]
+
 var gMeme = {
   selectedImgId: 5,
   selectedLineIdx: 0,
+  lines: [],
   lines: [
     {
       txt: 'I sometimes eat Falafel',
       size: 20,
       color: 'red',
-      // selcted: true
+      pos: { x: 200, y: 58 },
+      id: 0,
+      isDrag: true
     }
 
     , {
       txt: 'taltul',
       size: 30,
       color: 'green',
-      // selcted: false
+      pos: { x: 200, y: 350 },
+      id: 1,
+      isDrag: false
 
     }
   ]
@@ -32,6 +38,10 @@ function getImages() {
 
 function setLineTxt(txt) {
   gMeme.lines[gMeme.selectedLineIdx].txt = txt
+}
+
+function setSelectedLine(line) {
+  gMeme.selectedLineIdx = line.id
 }
 
 
@@ -55,11 +65,14 @@ function changeFont(symbol) {
   else selctedLine.size -= 2
 }
 
-function addLineText() {
+function addLineText(pos = { x: 0, y: 0 }) {
   const line = {
+    pos: pos,
     txt: 'Text',
     size: 16,
-    color: 'black'
+    color: 'black',
+    id: gMeme.lines.length,
+    isDrag: true
   }
   gMeme.lines.push(line)
   gMeme.selectedLineIdx = gMeme.lines.length - 1
@@ -68,4 +81,14 @@ function addLineText() {
 function switchLine() {
   console.log(gMeme.selectedLineIdx);
   (gMeme.lines.length - 1 === gMeme.selectedLineIdx) ? gMeme.selectedLineIdx = 0 : gMeme.selectedLineIdx++
+}
+
+function isLineClicked(clickedPos) {
+
+  const line = gMeme.lines.find(line => {
+    return offsetX > star.x && offsetX < star.x + BAR_WIDTH &&
+      offsetY > star.y && offsetY < star.y + star.rate
+  })
+
+  // const { pos } = gMeme[]
 }

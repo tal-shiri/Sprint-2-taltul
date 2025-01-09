@@ -19,7 +19,7 @@
 
     <section class="meme-editor">
       <div class="canvas-container">
-        <canvas width="400" height="400"></canvas>
+        <canvas width="400" height="400" onmousemove="onMove(event)" onmousedown="onDown(event)"></canvas>
         <section class="editor">
           <label for="meme-text">Enter your meme text:</label>
           <input type="text" id="meme-text" name="meme-text" placeholder="Your Text" oninput="onEditText(this)">

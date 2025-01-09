@@ -28,42 +28,17 @@ function renderMeme() {
 
 
     meme.lines.forEach((line, index) => {
-      let x
-      let y
-      const txt = line.txt
-      const color = line.color
-      const size = line.size
+      const { txt, color, size, pos } = line
 
-      if (index === 0) {
-        x = gElCanvas.width / 2
-        y = gElCanvas.height / 7
-      }
-      else if (index === 1) {
-        x = gElCanvas.width / 2
-        y = gElCanvas.height / 1.2
-      } else {
-        x = gElCanvas.width / 2
-        y = gElCanvas.height / 2
-      }
+      console.log(`Drawing line:`)
+      console.log(line)
 
+      console.log(`Selected line: ` + gMeme.selectedLineIdx)
       if (index === gMeme.selectedLineIdx) {
-        let padding = 6
-        const textMetrics = gCtx.measureText(txt);
-        const textWidth = textMetrics.width + size * 2;
-        const textHeight = size; // Approximation for text height
-        // Draw rectangle
-        const rectX = x - textWidth / 2 - padding; // Start X for rectangle
-        const rectY = y - textHeight + (padding / 2); // Start Y for rectangle
-        const rectWidth = textWidth + 2 * padding; // Rectangle width
-        const rectHeight = textHeight + padding * 2; // Rectangle height
-
-        gCtx.strokeStyle = 'black'; // Rectangle color
-        gCtx.lineWidth = 2; // Rectangle border width
-        gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+        drawRectangle(txt, size, pos.x, pos.y)
       }
 
-
-      drawText(txt, size, color, x, y)
+      drawText(txt, size, color, pos.x, pos.y)
     })
 
   }
@@ -71,7 +46,21 @@ function renderMeme() {
 
 }
 
+function drawRectangle(txt, size, x, y) {
+  const textMetrics = gCtx.measureText(txt)
+  const textWidth = textMetrics.width
+  const textHeight = size
+  console.log(textMetrics)
 
+  const rectX = x - textWidth / 2
+  const rectY = y - textHeight / 2
+  const rectWidth = textWidth
+  const rectHeight = textHeight
+
+  gCtx.lineWidth = 2
+  gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
+
+}
 
 
 function drawText(text, size, color, x, y) {
@@ -81,6 +70,7 @@ function drawText(text, size, color, x, y) {
   gCtx.font = `${size}px Aria`
   gCtx.textAlign = 'center'
   gCtx.textBaseline = 'middle'
+
   gCtx.fillText(text, x, y)
   // gCtx.strokeText(text, x, y)
 }
@@ -112,7 +102,7 @@ function onSetColor(elColor) {
 }
 
 function onAddText() {
-  addLineText()
+  addLineText({ x: gElCanvas.width / 2, y: gElCanvas.height / 2 })
   renderMeme()
 }
 
@@ -120,6 +110,91 @@ function onSwitchLine() {
   switchLine()
   renderMeme()
 
+}
+
+
+function onMove(ev) {
+  // console.log('onMove')
+
+  // const { isDrag } = getMeme()
+  // if (!isDrag) return
+  const { offsetX, offsetY, clientX, clientY } = ev
+
+
+  // const pos = getEvPos(ev)
+  // console.log('pos:', pos)
+
+  // console.log('x' + offsetX);
+  // console.log('y' + offsetY);
+  // console.log('xc' + clientX);
+  // console.log('yc' + clientY);
+
+
+  const selctedLine = gMeme.lines.find(line => {
+    return offsetX > line.pos.x && offsetX < line.pos.x &&
+      offsetY > line.pos.y && offsetY < line.pos.y + clientY
+  })
+
+  console.log(selctedLine)
+
+
+
+
+}
+function onDown(ev) {
+  const { offsetX, offsetY } = ev;
+
+  const selectedLine = gMeme.lines.find(line => {
+    const textMetrics = gCtx.measureText(line.txt)
+    const textWidth = textMetrics.width
+    const textHeight = line.size
+
+    const lineXStart = line.pos.x - textWidth / 2
+    const lineXEnd = line.pos.x + textWidth / 2
+    const lineYStart = line.pos.y - textHeight / 2
+    const lineYEnd = line.pos.y + textHeight / 2
+
+    return (
+      offsetX >= lineXStart &&
+      offsetX <= lineXEnd &&
+      offsetY >= lineYStart &&
+      offsetY <= lineYEnd
+    )
+  })
+
+  if (selectedLine) {
+    console.log('Selected Line:', selectedLine)
+    setSelectedLine(selectedLine)
+    renderMeme()
+  } else {
+    console.log('No line selected.')
+  }
+}
+
+
+
+
+
+function getEvPos(ev) {
+  const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+
+  let pos = {
+    x: ev.offsetX,
+    y: ev.offsetY,
+  }
+
+  if (TOUCH_EVS.includes(ev.type)) {
+    // Prevent triggering the mouse ev
+    ev.preventDefault()
+    // Gets the first touch point
+    ev = ev.changedTouches[0]
+    // Calc the right pos according to the touch screen
+    pos = {
+      x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+      y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+    }
+  }
+  return pos
 }
 
 
