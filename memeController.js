@@ -30,10 +30,10 @@ function renderMeme() {
     meme.lines.forEach((line, index) => {
       const { txt, color, size, pos, aling, font } = line
 
-      console.log(`Drawing line:`)
-      console.log(line)
+      // console.log(`Drawing line:`)
+      // console.log(line)
 
-      console.log(`Selected line: ` + gMeme.selectedLineIdx)
+      // console.log(`Selected line: ` + gMeme.selectedLineIdx)
       drawText(txt, size, color, aling, font, pos.x, pos.y)
 
       if (index === gMeme.selectedLineIdx) {
@@ -52,10 +52,9 @@ function drawRectangle(txt, size, align, x, y) {
   const textWidth = textMetrics.width
   const textHeight = size
   let rectX, rectY, rectWidth, rectHeight
-
   rectWidth = textWidth;
   rectHeight = textHeight
-  console.log(textMetrics)
+
   if (align === 'left') {
     rectX = x
     rectY = y - textHeight / 2
@@ -73,7 +72,6 @@ function drawRectangle(txt, size, align, x, y) {
 
 
 function drawText(text, size, color, aling, font, x, y) {
-  console.log(size);
 
   gCtx.lineWidth = 2
   // gCtx.strokeStyle = 'brown'
@@ -121,33 +119,31 @@ function onAddText() {
 function onSwitchLine() {
   switchLine()
   renderMeme()
-
 }
 
-
 function onMove(ev) {
-  // console.log('onMove')
+  console.log('onMove')
 
-  // const { isDrag } = getMeme()
-  // if (!isDrag) return
-  const { offsetX, offsetY, clientX, clientY } = ev
+  const meme = getMeme()
+  const selctedLine = gMeme.lines[gMeme.selectedLineIdx]
 
-
-  // const pos = getEvPos(ev)
-  // console.log('pos:', pos)
-
-  // console.log('x' + offsetX);
-  // console.log('y' + offsetY);
-  // console.log('xc' + clientX);
-  // console.log('yc' + clientY);
+  const isDrag = selctedLine.isDrag
+  // console.log(getMeme());
 
 
-  const selctedLine = gMeme.lines.find(line => {
-    return offsetX > line.pos.x && offsetX < line.pos.x &&
-      offsetY > line.pos.y && offsetY < line.pos.y + clientY
-  })
+  if (!isDrag) return
 
-  console.log(selctedLine)
+
+  const pos = getEvPos(ev)
+  console.log('pos:', pos)
+
+  const dx = pos.x - selctedLine.pos.x
+  const dy = pos.y - selctedLine.pos.y
+  moveLine(dx, dy)
+  renderMeme()
+
+
+
 }
 
 function onDown(ev) {
@@ -173,13 +169,21 @@ function onDown(ev) {
 
   if (selectedLine) {
     console.log('Selected Line:', selectedLine)
+    updateEditor(selectedLine)
     setSelectedLine(selectedLine)
+    setLineDrag(true)
     renderMeme()
   } else {
     console.log('No line selected.')
   }
 }
 
+function onUp() {
+  console.log('onUp')
+  setLineDrag(false)
+  // document.body.style.cursor = 'grab'
+
+}
 
 function onSetAlign(selctor) {
   setAlignText(selctor)
@@ -224,6 +228,34 @@ function getEvPos(ev) {
     }
   }
   return pos
+}
+
+function updateEditor(line) {
+  const inputEle = document.getElementById('meme-input')
+  const elColorPicker = document.getElementById('favcolor')
+  const elFontSelctor = document.getElementById('font-selctor')
+
+  console.log(elFontSelctor);
+
+  inputEle.value = line.txt
+  elColorPicker.value = line.color
+  elFontSelctor.value = line.font
+}
+
+function onAddEmoji(emoji) {
+  let inputEle = document.getElementById('meme-input');
+  inputEle.value += emoji;
+  onEditText(inputEle)
+}
+
+function toggleEmojiDrawer() {
+  let drawer = document.getElementById('drawer');
+
+  if (drawer.classList.contains('hidden')) {
+    drawer.classList.remove('hidden');
+  } else {
+    drawer.classList.add('hidden');
+  }
 }
 
 

@@ -21,12 +21,13 @@
   <main>
 
     <section class="meme-editor">
-      <canvas width="400" height="400" onmousemove="onMove(event)" onmousedown="onDown(event)"></canvas>
+      <canvas width="400" height="400" onmousemove="onMove(event)" onmousedown="onDown(event)"
+        onmouseup="onUp()"></canvas>
 
       <section class="editor">
         <div class="first-line">
-          <label for="meme-text">Enter your meme text:</label>
-          <input type="text" id="meme-text" name="meme-text" placeholder="Your Text" oninput="onEditText(this)">
+          <label for="meme-input">Enter your meme text:</label>
+          <input type="text" id="meme-input" name="meme-input" placeholder="Your Text" oninput="onEditText(this)">
         </div>
 
         <div class="second-line">
@@ -44,7 +45,12 @@
         </div>
 
         <div class="fourth-line">
-          <select name="font-select" id="" onchange="onSetFont()">
+          <button class="move-up-btn" onclick="onMoveStep('up')">⇧</button>
+          <button class="move-down-btn" onclick="onMoveStep('down')">⇩</button>
+        </div>
+
+        <div class="fifth-line">
+          <select name="font-select" id="font-selctor" onchange="onSetFont()">
             <option value="">Select Font</option>
             <option value="Ariel">Ariel</option>
             <option value="Verdana">Verdana</option>
@@ -57,12 +63,26 @@
 
           </select>
           <input type="color" id="favcolor" value="#ff0000" oninput="onSetColor(this)">
+          <button class="fa-regular fa-face-smile" onclick="toggleEmojiDrawer()"></button>
+
+          <div id="drawer" class="emoji-drawer hidden">
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😀</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😃</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😄</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😁</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😆</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">🤪</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😆</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😡</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">🫥</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😴</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">👺</div>
+            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">💀</div>
+
+
+          </div>
         </div>
 
-        <div class="fifth-line">
-          <button class="move-up-btn" onclick="onMoveStep('up')">⇧</button>
-          <button class="move-down-btn" onclick="onMoveStep('down')">⇩</button>
-        </div>
 
         <div class="share-container">
           <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image</a>

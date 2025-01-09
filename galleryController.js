@@ -13,11 +13,7 @@ function renderGallery() {
 }
 
 function onSelectImg(elSelctedImg) {
-  console.log(elSelctedImg);
-
   const id = elSelctedImg.dataset.id
-  // console.log(id);
-
   setImg(id)
   renderMeme()
 }
