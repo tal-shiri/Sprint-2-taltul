@@ -28,13 +28,13 @@ function renderMeme() {
 
 
     meme.lines.forEach((line, index) => {
-      const { txt, color, size, pos, aling } = line
+      const { txt, color, size, pos, aling, font } = line
 
       console.log(`Drawing line:`)
       console.log(line)
 
       console.log(`Selected line: ` + gMeme.selectedLineIdx)
-      drawText(txt, size, color, aling, pos.x, pos.y)
+      drawText(txt, size, color, aling, font, pos.x, pos.y)
 
       if (index === gMeme.selectedLineIdx) {
         drawRectangle(txt, size, aling, pos.x, pos.y)
@@ -72,13 +72,13 @@ function drawRectangle(txt, size, align, x, y) {
 }
 
 
-function drawText(text, size, color, aling, x, y) {
+function drawText(text, size, color, aling, font, x, y) {
   console.log(size);
 
   gCtx.lineWidth = 2
   // gCtx.strokeStyle = 'brown'
   gCtx.fillStyle = color
-  gCtx.font = `${size}px Ariel`
+  gCtx.font = `${size}px ${font}`
   gCtx.textAlign = aling
   gCtx.textBaseline = 'middle'
 
@@ -185,6 +185,22 @@ function onSetAlign(selctor) {
   setAlignText(selctor)
   renderMeme()
 
+}
+
+function onSetFont() {
+  const selectedFont = document.querySelector('select').value
+  setFont(selectedFont)
+  renderMeme()
+}
+
+function onMoveStep(direction) {
+  setStep(direction)
+  renderMeme()
+}
+
+function onRemoveLine() {
+  removeLine()
+  renderMeme()
 }
 
 

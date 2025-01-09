@@ -27,7 +27,22 @@
           <button class="increase-btn" onClick="onIncreaseFont()">A+</button>
           <button class="decrease-btn" onClick="onDecreaseFont()">A-</button>
           <button class="addLine-btn" onClick="onAddText()">+</button>
-          <button class="addLine-btn" onClick="onAddText()">+</button>
+          <select name="font-select" id="" onchange="onSetFont()">
+            <option value="">Select Font</option>
+            <option value="Ariel">Ariel</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Trebuchet MS ">Trebuchet MS </option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Courier New">Courier New</option>
+
+
+          </select>
+
+          <button class="move-up-btn" onclick="onMoveStep('up')">⇧</button>
+          <button class="move-down-btn" onclick="onMoveStep('down')">⇩</button>
+          <button class="fas fa-trash" aria-hidden="false" onclick="onRemoveLine()"></button>
 
           <button class="aling-center-btn" onclick="onSetAlign('center')"><img src="img/aling-center.png" alt=""
               srcset=""></button>
@@ -77,6 +92,7 @@
   <script src="memeService.js"></script>
   <script src="galleryController.js"></script>
   <script src="memeController.js"></script>
+  <script src="https://kit.fontawesome.com/c864cec3cc.js" crossorigin="anonymous"></script>
 
 
 

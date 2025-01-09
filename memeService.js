@@ -12,6 +12,7 @@ var gMeme = {
       pos: { x: 200, y: 58 },
       id: 0,
       aling: 'center',
+      font: 'Ariel',
       isDrag: true
     }
 
@@ -22,6 +23,7 @@ var gMeme = {
       pos: { x: 200, y: 350 },
       id: 1,
       aling: 'center',
+      font: 'Ariel',
       isDrag: false
 
     }
@@ -45,8 +47,6 @@ function setLineTxt(txt) {
 function setSelectedLine(line) {
   gMeme.selectedLineIdx = line.id
 }
-
-
 
 function setImg(selectedImgId) {
   gMeme.selectedImgId = selectedImgId
@@ -75,6 +75,7 @@ function addLineText(pos = { x: 0, y: 0 }) {
     color: 'black',
     id: gMeme.lines.length,
     aling: 'center',
+    font: 'Ariel',
     isDrag: true
   }
   gMeme.lines.push(line)
@@ -104,3 +105,47 @@ function setAlignText(selctor) {
   }
 
 }
+
+function setFont(font) {
+  const selctedLine = gMeme.lines[gMeme.selectedLineIdx]
+
+  switch (font) {
+    case 'Ariel':
+      selctedLine.font = 'Ariel'
+      break;
+    case 'Verdana':
+      selctedLine.font = 'Verdana'
+      break;
+    case 'Tahoma':
+      selctedLine.font = 'Tahoma'
+      break;
+    case 'Trebuchet MS':
+      selctedLine.font = 'Trebuchet MS'
+      break;
+    case 'Times New Roman':
+      selctedLine.font = 'Times New Roman'
+      break;
+    case 'Georgia':
+      selctedLine.font = 'Georgia'
+      break;
+    case 'Courier New':
+      selctedLine.font = 'Courier New'
+      break;
+    default:
+      return
+  }
+}
+
+function setStep(direction) {
+  const selctedLine = gMeme.lines[gMeme.selectedLineIdx]
+  if (direction === 'up') {
+    selctedLine.pos.y -= 10
+  } else {
+    selctedLine.pos.y += 10
+  }
+}
+
+function removeLine() {
+  gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+}
+
