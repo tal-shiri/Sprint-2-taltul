@@ -17,3 +17,12 @@ function onSelectImg(elSelctedImg) {
   setImg(id)
   renderMeme()
 }
+
+function onSetFilterBy(elInput) {
+  const filterBy = elInput.value
+  if (filterBy === '') setFilterBy(undefined)
+
+  if (filterBy) setFilterBy(filterBy)
+
+  renderGallery()
+}

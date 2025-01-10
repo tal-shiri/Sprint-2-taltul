@@ -125,7 +125,11 @@ function onMove(ev) {
   console.log('onMove')
 
   const meme = getMeme()
-  const selctedLine = gMeme.lines[gMeme.selectedLineIdx]
+
+
+  const selctedLine = meme.lines[meme.selectedLineIdx]
+  if (!selctedLine) return
+
 
   const isDrag = selctedLine.isDrag
   // console.log(getMeme());
@@ -173,16 +177,20 @@ function onDown(ev) {
     setSelectedLine(selectedLine)
     setLineDrag(true)
     renderMeme()
+    document.body.style.cursor = 'grabbing'
+
   } else {
     console.log('No line selected.')
   }
 }
 
 function onUp() {
-  console.log('onUp')
+  const meme = getMeme()
+  const selctedLine = meme.lines[meme.selectedLineIdx]
+  if (selctedLine)
+    console.log('onUp')
   setLineDrag(false)
-  // document.body.style.cursor = 'grab'
-
+  document.body.style.cursor = 'default'
 }
 
 function onSetAlign(selctor) {
