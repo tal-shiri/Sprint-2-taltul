@@ -14,6 +14,7 @@
     <nav class="main-nav">
       <div class="gallery">Gallery</div>
       <div class="about">About</div>
+      <div class="editor">Editor</div>
     </nav>
 
   </header>
@@ -86,6 +87,12 @@
 
         <div class="share-container">
           <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image</a>
+          <a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
+
+          <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(event)">
+            <input name="img" id="imgData" type="hidden" />
+            <button class="btn" type="submit">Upload to Facebook</button>
+          </form>
         </div>
 
       </section>
@@ -96,8 +103,18 @@
     </section>
 
     <section class="gallery-content">
+      <div class="search-bar">
+        <input type="text" id="meme-text" name="meme-search" placeholder="Search...." oninput="onSetFilterBy(this)">
+        <div class="popular-categoires">
+          <div class="funny">funny</div>
+          <div class="cat">cat</div>
+          <div class="drink">drink</div>
+          <div class="happy">happy</div>
+          <div class="sad">funny</div>
 
-      <input type="text" id="meme-text" name="meme-search" placeholder="Search...." oninput="onSetFilterBy(this)">
+        </div>
+
+      </div>
 
       <section class="gallery-imges">
 
@@ -127,6 +144,8 @@
   <script src="galleryController.js"></script>
   <script src="memeController.js"></script>
   <script src="galleryService.js"></script>
+  <script src="utils.js"></script>
+
 
   <script src="https://kit.fontawesome.com/c864cec3cc.js" crossorigin="anonymous"></script>
 

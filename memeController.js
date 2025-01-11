@@ -256,15 +256,28 @@ function onAddEmoji(emoji) {
   onEditText(inputEle)
 }
 
-function toggleEmojiDrawer() {
-  let drawer = document.getElementById('drawer');
+function onUploadImg(ev) {
+  ev.preventDefault()
+  const canvasData = gElCanvas.toDataURL('image/jpeg')
 
-  if (drawer.classList.contains('hidden')) {
-    drawer.classList.remove('hidden');
-  } else {
-    drawer.classList.add('hidden');
+  // After a succesful upload, allow the user to share on Facebook
+  function onSuccess(uploadedImgUrl) {
+    const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+    console.log('encodedUploadedImgUrl:', encodedUploadedImgUrl)
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+
+    // document.querySelector('.share-container').innerHTML = `
+    // <a href="${uploadedImgUrl}">Uploaded picture</a>
+    // <p>Image url: ${uploadedImgUrl}</p>
+    // <button class="btn-facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}')">
+    //    Share on Facebook  
+    // </button>`
   }
+
+  uploadImg(canvasData, onSuccess)
 }
+
+
 
 
 

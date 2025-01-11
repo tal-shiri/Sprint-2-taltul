@@ -50,3 +50,16 @@
     display: grid;
     place-items: center;
 }
+
+/* Search bar */
+
+.search-bar {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 50px;
+}
+
+.popular-categoires {
+    display: flex;
+    justify-content: space-evenly;
+}
