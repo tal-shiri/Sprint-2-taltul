@@ -9,133 +9,120 @@
 </head>
 
 <body onload="onInit()">
-  <header class="main-header">
-    <div class="logo">Logo</div>
-    <nav class="main-nav">
-      <div class="gallery" onclick="onNavgiateToGallery()">Gallery</div>
-      <div class="about">About</div>
-    </nav>
+  <div class="main-container">
 
-  </header>
+    <header class="main-header">
+      <div class="logo">
+        <img src="img/logo.svg" alt="logo" />
+      </div>
+      <nav class="main-nav">
+        <div class="gallery" onclick="onNavgiateToGallery()">Gallery</div>
+        <div class="about">About</div>
+      </nav>
+    </header>
 
-  <main>
+    <main class="main-content">
+      <section class="meme-editor">
+        <canvas width="400" height="400" onmousemove="onMove(event)" onmousedown="onDown(event)"
+          onmouseup="onUp()"></canvas>
 
-    <section class="meme-editor">
-      <canvas width="400" height="400" onmousemove="onMove(event)" onmousedown="onDown(event)"
-        onmouseup="onUp()"></canvas>
+        <section class="editor">
 
-      <section class="editor">
-        <div class="first-line">
-          <label for="meme-input">Enter your meme text:</label>
-          <input type="text" id="meme-input" name="meme-input" placeholder="Your Text" oninput="onEditText(this)">
-        </div>
+          <input class="meme-text-input" type="text" id="meme-input" name="meme-input"
+            placeholder="Enter your meme text here" oninput="onEditText(this)">
 
-        <div class="second-line">
-          <button class="switchLine-btn" onClick="onSwitchLine()">&#8645</button>
-          <button class="addLine-btn" onClick="onAddText()">+</button>
-          <button class="fas fa-trash" aria-hidden="false" onclick="onRemoveLine()"></button>
-        </div>
-
-        <div class="third-line">
-          <button class="increase-btn" onClick="onIncreaseFont()">A+</button>
-          <button class="decrease-btn" onClick="onDecreaseFont()">A-</button>
-          <button class="aling-left-btn" onclick="onSetAlign('left')"><img src="img/align-left.png"></button>
-          <button class="aling-center-btn" onclick="onSetAlign('center')"><img src="img/aling-center.png"></button>
-          <button class="aling-right-btn" onclick="onSetAlign('right')"><img src="img/align-right.png"></button>
-        </div>
-
-        <div class="fourth-line">
-          <button class="move-up-btn" onclick="onMoveStep('up')">⇧</button>
-          <button class="move-down-btn" onclick="onMoveStep('down')">⇩</button>
-        </div>
-
-        <div class="fifth-line">
-          <select name="font-select" id="font-selctor" onchange="onSetFont()">
-            <option value="">Select Font</option>
-            <option value="Ariel">Ariel</option>
-            <option value="Verdana">Verdana</option>
-            <option value="Tahoma">Tahoma</option>
-            <option value="Trebuchet MS ">Trebuchet MS </option>
-            <option value="Times New Roman">Times New Roman</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Courier New">Courier New</option>
-
-
-          </select>
-          <input type="color" id="favcolor" value="#ff0000" oninput="onSetColor(this)">
-          <button class="fa-regular fa-face-smile" onclick="toggleEmojiDrawer()"></button>
-
-          <div id="drawer" class="emoji-drawer hidden">
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😀</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😃</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😄</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😁</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😆</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">🤪</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😆</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😡</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">🫥</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😴</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">👺</div>
-            <div class="emoji" onclick="onAddEmoji(this.innerHTML)">💀</div>
+          <div class="buttons-strip">
+            <button class="editor-button" onClick="onSwitchLine()">&#8645</button>
+            <button class="editor-button" onClick="onAddText()">+</button>
+            <button class="fa-solid fa-trash editor-button" onclick="onRemoveLine()"></button>
 
 
           </div>
-        </div>
+
+          <div class="buttons-strip">
+            <button class="editor-button" onClick="onIncreaseFont()">A+</button>
+            <button class="editor-button" onClick="onDecreaseFont()">A-</button>
+            <button class="editor-button" onclick="onSetAlign('left')">Right</button>
+            <button class="editor-button" onclick="onSetAlign('center')">Center</button>
+            <button class="editor-button" onclick="onSetAlign('right')">Left</button>
+          </div>
+
+          <div class="buttons-strip">
+            <button class="editor-button" onclick="onMoveStep('up')">⇧</button>
+            <button class="editor-button" onclick="onMoveStep('down')">⇩</button>
+          </div>
+
+          <div class="buttons-strip">
+            <select class="font-input" name="font-select" id="font-selctor" onchange="onSetFont()">
+              <option value="">Select Font</option>
+              <option value="Ariel">Ariel</option>
+              <option value="Verdana">Verdana</option>
+              <option value="Tahoma">Tahoma</option>
+              <option value="Trebuchet MS ">Trebuchet MS </option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Courier New">Courier New</option>
+            </select>
+          </div>
+
+          <div class="buttons-strip">
+            <input class="editor-button" type="color" id="favcolor" value="#ff0000" oninput="onSetColor(this)">
+          </div>
+
+          <div class="buttons-strip">
+            <button class="fa-regular fa-face-smile editor-button" onclick="toggleEmojiDrawer()"></button>
+
+            <div id="drawer" class="emoji-drawer hidden">
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😀</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😃</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😄</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😁</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😆</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">🤪</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😆</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😡</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">🫥</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😴</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">👺</div>
+              <div class="emoji" onclick="onAddEmoji(this.innerHTML)">💀</div>
+            </div>
+          </div>
 
 
-        <div class="share-container">
-          <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image</a>
-          <a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
 
-          <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(event)">
-            <input name="img" id="imgData" type="hidden" />
-            <button class="btn" type="submit">Upload to Facebook</button>
-          </form>
-        </div>
+          <div class="share-container">
+            <button class="editor-button share">
+              <a href="#" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image</a>
+            </button>
+            <!-- 
+            <a class="editor-button share" href="whatsapp://send?text=The text to share!"
+              data-action="share/whatsapp/share">Share via Whatsapp</a> -->
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(event)">
+              <input name="img" id="imgData" type="hidden" />
+              <button class="btn editor-button" type="submit">ⓕ</button>
+            </form>
+          </div>
+        </section>
 
       </section>
-
-
-
-
-    </section>
-
-    <section class="gallery-content">
-      <div class="search-bar">
-        <input type="text" id="meme-text" name="meme-search" placeholder="Search...." oninput="onSetFilterBy(this)" />
-        <div class="popular-categoires">
-          <div class="funny">funny</div>
-          <div class="cat">cat</div>
-          <div class="drink">drink</div>
-          <div class="happy">happy</div>
-          <div class="sad">funny</div>
+      <section class="gallery-content">
+        <div class="search-bar">
+          <input type="text" id="meme-text" name="meme-search" placeholder="Search...." oninput="onSetFilterBy(this)" />
+          <div class="popular-categoires">
+          </div>
         </div>
+        <section class="gallery-imges">
+        </section>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="logo">
+        <img src="img/logo.svg" alt="">
       </div>
-
-      <section class="gallery-imges">
-
-      </section>
-
-
-
-
-    </section>
-
-
-
-
-
-
-
-
-
-  </main>
-
-  <footer class="main-footer">
-    <div class="logo">Blogin</div>
-    <small class="rights">all rights reserved 2025</small>
-  </footer>
+      <small class="rights">all rights reserved 2025</small>
+    </footer>
+  </div>
 
   <script src="memeService.js"></script>
   <script src="galleryController.js"></script>

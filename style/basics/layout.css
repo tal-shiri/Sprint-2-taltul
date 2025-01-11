@@ -1,21 +1,34 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    /* background-color: green; */
+    height: 100vh;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    /* background-color: blue; */
+    flex-grow: 1;
+}
+
 /* Gallery-layout */
 
-.gallery-content {
-    margin-top: 40px;
-}
 
 .gallery-imges {
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
     flex-wrap: wrap;
     justify-content: center;
-
 }
 
-.gallery-content .gallery-imges>img {
-    width: 200px;
-    height: 200px;
+.gallery-imges img {
+    border-radius: 5px;
 }
+
 
 /* Header & Footer  */
 
@@ -24,41 +37,86 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     background: lightgray;
-    padding: 1.5em;
+    padding: 1em;
+    background-color: var(--soft-primary-color);
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .main-footer>.rights {
     grid-column: 3;
+    align-self: center;
+
 }
 
-.main-header>.main-nav {
+.main-nav {
     display: flex;
     grid-column: 3;
     justify-content: space-evenly;
-
+    align-items: center;
 }
+
+.main-nav>* {
+    cursor: pointer;
+}
+
+.gallery {
+    text-decoration: underline;
+}
+
+.logo {
+    width: 50px;
+}
+
 
 .meme-editor {
     display: none;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 5%;
-    margin: 2.5em;
+    grid-template-columns: 1fr;
+    gap: 12px;
 }
 
 /* Editor */
 
-.editor {
-    display: grid;
-    place-items: center;
-}
 
 /* Search bar */
 
 .search-bar {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+    /* background-color: red; */
+    padding: 20px 0px;
 }
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
 
 .popular-categoires {
     display: flex;
+    gap: 18px;
     justify-content: space-evenly;
+}
+
+.category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+    font-weight: 600;
 }

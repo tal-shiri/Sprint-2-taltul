@@ -2,16 +2,11 @@ body {
   text-align: center;
 }
 
-button {
-  margin: 0.5em;
-  cursor: pointer;
-}
-
 canvas {
   outline: 1px solid green;
   display: block;
-  margin: auto;
-  grid-column: 2;
+  margin: 0 auto;
+  
 }
 
 /* .canvas-container {

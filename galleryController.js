@@ -10,6 +10,16 @@ function renderGallery() {
   })
 
   elGallery.innerHTML = strHtml
+
+  renderTags()
+}
+
+function renderTags() {
+  const categoriesContainer = document.querySelector('.popular-categoires')
+  categoriesContainer.innerHTML = '';
+  for (var key in gKeywordSearchCountMap) {
+    categoriesContainer.innerHTML += `<div class="category" onClick="onSelectTag(this)" style="font-size: ${Math.min(gKeywordSearchCountMap[key] * 1.5, 40)}px">${key}</div>`
+  }
 }
 
 function onSelectImg(elSelctedImg) {
@@ -29,14 +39,24 @@ function onSetFilterBy(elInput) {
 }
 
 function onNavgiateToGallery() {
-  console.log('ssss');
 
   document.querySelector('.gallery-content').style.display = 'block'
+  document.querySelector('.gallery').style.textDecoration = 'underline'
   document.querySelector('.meme-editor').style.display = 'none'
 }
 
 function navgiateToEditor() {
   document.querySelector('.gallery-content').style.display = 'none'
+  document.querySelector('.gallery').style.textDecoration = 'auto'
+
   document.querySelector('.meme-editor').style.display = 'grid'
 }
 
+
+function onSelectTag(elTag) {
+  const tag = elTag.innerText
+  increaseFontSize(tag)
+  gFilterBy = tag
+  renderGallery()
+  renderTags()
+}

@@ -8,6 +8,7 @@ function onInit() {
 
   renderMeme()
   renderGallery()
+
   // resizeCanvas()
 }
 
@@ -264,13 +265,6 @@ function onUploadImg(ev) {
     const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
     console.log('encodedUploadedImgUrl:', encodedUploadedImgUrl)
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
-
-    // document.querySelector('.share-container').innerHTML = `
-    // <a href="${uploadedImgUrl}">Uploaded picture</a>
-    // <p>Image url: ${uploadedImgUrl}</p>
-    // <button class="btn-facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}')">
-    //    Share on Facebook  
-    // </button>`
   }
 
   uploadImg(canvasData, onSuccess)
