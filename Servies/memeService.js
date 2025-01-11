@@ -1,32 +1,8 @@
 var gMeme = {
   selectedImgId: 5,
   selectedLineIdx: 0,
-  lines: [
-    {
-      txt: 'I sometimes eat Falafel',
-      size: 20,
-      color: 'red',
-      pos: { x: 200, y: 58 },
-      id: 0,
-      aling: 'center',
-      font: 'Ariel',
-      isDrag: false
-    }
-
-    , {
-      txt: 'taltul',
-      size: 30,
-      color: 'green',
-      pos: { x: 200, y: 350 },
-      id: 1,
-      aling: 'center',
-      font: 'Ariel',
-      isDrag: false
-
-    }
-  ]
+  lines: []
 }
-
 
 function getMeme() {
   return gMeme
@@ -63,12 +39,12 @@ function addLineText(pos = { x: 0, y: 0 }) {
   const line = {
     pos: pos,
     txt: 'Text',
-    size: 16,
-    color: 'black',
+    size: 30,
+    color: '',
     id: gMeme.lines.length,
     aling: 'center',
     font: 'Ariel',
-    isDrag: false
+    isDrag: false,
   }
   gMeme.lines.push(line)
   gMeme.selectedLineIdx = gMeme.lines.length - 1
@@ -80,8 +56,6 @@ function switchLine() {
 
 function setAlignText(selctor) {
   const selctedLine = gMeme.lines[gMeme.selectedLineIdx]
-  console.log(selctor);
-
   switch (selctor) {
     case 'center':
       selctedLine.aling = 'center'
@@ -95,7 +69,6 @@ function setAlignText(selctor) {
     default:
       break;
   }
-
 }
 
 function setFont(font) {
@@ -131,9 +104,13 @@ function setFont(font) {
 function setStep(direction) {
   const selctedLine = gMeme.lines[gMeme.selectedLineIdx]
   if (direction === 'up') {
-    selctedLine.pos.y -= 10
-  } else {
-    selctedLine.pos.y += 10
+    if (selctedLine.pos.y > 10) {
+      selctedLine.pos.y -= 10
+    }
+  } else if (direction === 'down') {
+    if (selctedLine.pos.y < 390) {
+      selctedLine.pos.y += 10;
+    }
   }
 }
 
@@ -142,13 +119,9 @@ function removeLine() {
 }
 
 function moveLine(dx, dy) {
-  console.log('dx' + dx);
-  console.log('dy' + dy);
-
   const selctedLine = gMeme.lines[gMeme.selectedLineIdx]
   selctedLine.pos.x += dx
   selctedLine.pos.y += dy
-
 }
 
 function setLineDrag(isDrag) {

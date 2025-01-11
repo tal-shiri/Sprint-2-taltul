@@ -11,6 +11,7 @@ function renderGallery() {
 
   elGallery.innerHTML = strHtml
 
+
   renderTags()
 }
 
@@ -32,14 +33,11 @@ function onSelectImg(elSelctedImg) {
 function onSetFilterBy(elInput) {
   const filterBy = elInput.value
   if (filterBy === '') setFilterBy(undefined)
-
   if (filterBy) setFilterBy(filterBy)
-
   renderGallery()
 }
 
 function onNavgiateToGallery() {
-
   document.querySelector('.gallery-content').style.display = 'block'
   document.querySelector('.gallery').style.textDecoration = 'underline'
   document.querySelector('.meme-editor').style.display = 'none'
@@ -48,10 +46,8 @@ function onNavgiateToGallery() {
 function navgiateToEditor() {
   document.querySelector('.gallery-content').style.display = 'none'
   document.querySelector('.gallery').style.textDecoration = 'auto'
-
   document.querySelector('.meme-editor').style.display = 'grid'
 }
-
 
 function onSelectTag(elTag) {
   const tag = elTag.innerText

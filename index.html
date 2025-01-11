@@ -19,12 +19,17 @@
         <div class="gallery" onclick="onNavgiateToGallery()">Gallery</div>
         <div class="about">About</div>
       </nav>
+      <div class="hamburger" onclick="toggleMenu()">
+        ☰
+      </div>
     </header>
 
     <main class="main-content">
       <section class="meme-editor">
-        <canvas width="400" height="400" onmousemove="onMove(event)" onmousedown="onDown(event)"
-          onmouseup="onUp()"></canvas>
+        <div class="canvas-container">
+          <canvas width="400" height="400" onmousemove="onMove(event)" onmousedown="onDown(event)"
+            onmouseup="onUp()"></canvas>
+        </div>
 
         <section class="editor">
 
@@ -32,24 +37,22 @@
             placeholder="Enter your meme text here" oninput="onEditText(this)">
 
           <div class="buttons-strip">
-            <button class="editor-button" onClick="onSwitchLine()">&#8645</button>
-            <button class="editor-button" onClick="onAddText()">+</button>
+            <button class="editor-button fa-solid fa-arrows-up-down" onClick="onSwitchLine()"></button>
+            <button class="editor-button fa-solid fa-plus " onClick="onAddText()"></button>
             <button class="fa-solid fa-trash editor-button" onclick="onRemoveLine()"></button>
-
-
           </div>
 
           <div class="buttons-strip">
             <button class="editor-button" onClick="onIncreaseFont()">A+</button>
             <button class="editor-button" onClick="onDecreaseFont()">A-</button>
-            <button class="editor-button" onclick="onSetAlign('left')">Right</button>
-            <button class="editor-button" onclick="onSetAlign('center')">Center</button>
-            <button class="editor-button" onclick="onSetAlign('right')">Left</button>
+            <button class="editor-button fa-solid fa-align-right" onclick="onSetAlign('left')"></button>
+            <button class="fa-solid fa-align-center editor-button" onclick="onSetAlign('center')"></button>
+            <button class="fa-solid fa-align-left editor-button" onclick="onSetAlign('right')"></button>
           </div>
 
           <div class="buttons-strip">
-            <button class="editor-button" onclick="onMoveStep('up')">⇧</button>
-            <button class="editor-button" onclick="onMoveStep('down')">⇩</button>
+            <button class="fa-solid fa-arrow-up editor-button" onclick="onMoveStep('up')"></button>
+            <button class="fa-solid fa-arrow-down editor-button" onclick="onMoveStep('down')"></button>
           </div>
 
           <div class="buttons-strip">
@@ -66,12 +69,12 @@
           </div>
 
           <div class="buttons-strip">
-            <input class="editor-button" type="color" id="favcolor" value="#ff0000" oninput="onSetColor(this)">
+            <button class="editor-button fa-solid fa-palette" onclick="onOpenPallte()"></button>
+            <input class="hidden-color-input" type="color" id="favcolor" value="#ff0000" oninput="onSetColor(this)">
           </div>
 
           <div class="buttons-strip">
             <button class="fa-regular fa-face-smile editor-button" onclick="toggleEmojiDrawer()"></button>
-
             <div id="drawer" class="emoji-drawer hidden">
               <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😀</div>
               <div class="emoji" onclick="onAddEmoji(this.innerHTML)">😃</div>
@@ -94,12 +97,13 @@
             <button class="editor-button share">
               <a href="#" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image</a>
             </button>
-            <!-- 
-            <a class="editor-button share" href="whatsapp://send?text=The text to share!"
-              data-action="share/whatsapp/share">Share via Whatsapp</a> -->
-            <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(event)">
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImgFacebook(event)">
               <input name="img" id="imgData" type="hidden" />
               <button class="btn editor-button" type="submit">ⓕ</button>
+            </form>
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImgWhatsApp(event)">
+              <input name="img" id="imgData" type="hidden" />
+              <button class="btn editor-button fa-brands fa-whatsapp" type="submit"></button>
             </form>
           </div>
         </section>
@@ -124,10 +128,10 @@
     </footer>
   </div>
 
-  <script src="memeService.js"></script>
-  <script src="galleryController.js"></script>
-  <script src="memeController.js"></script>
-  <script src="galleryService.js"></script>
+  <script src="Servies/memeService.js"></script>
+  <script src="controllers/galleryController.js"></script>
+  <script src="controllers/memeController.js"></script>
+  <script src="Servies/galleryService.js"></script>
   <script src="utils.js"></script>
 
 

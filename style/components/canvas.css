@@ -6,11 +6,5 @@ canvas {
   outline: 1px solid green;
   display: block;
   margin: 0 auto;
-  
-}
 
-/* .canvas-container {
-  width: 60vw;
-  height: 60vh;
-  margin: .5em auto;
-} */
+}

@@ -1,31 +1,39 @@
-
-@media screen and (min-width: 599px) {
+@media (min-width: 599px) {
     .gallery-imges {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media (min-width: 1200px) {
     .gallery-imges {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
 
-@media screen and (min-width: 599px) {
+@media (min-width: 599px) {
     .search-bar {
-        flex-direction: row;       
+        flex-direction: row;
     }
 }
 
-@media screen and (min-width: 599px) {
+@media (min-width: 599px) {
     .search-bar input {
         max-width: 400px;
     }
 }
 
 
-@media screen and (min-width: 599px) {
+@media (min-width: 599px) {
     .meme-editor {
         grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 599px) {
+    .main-nav {
+        display: flex;
+        grid-column: 3;
+        justify-content: space-evenly;
+        align-items: center;
     }
 }
