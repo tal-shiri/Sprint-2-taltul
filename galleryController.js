@@ -15,6 +15,7 @@ function renderGallery() {
 function onSelectImg(elSelctedImg) {
   const id = elSelctedImg.dataset.id
   setImg(id)
+  navgiateToEditor()
   renderMeme()
 }
 
@@ -26,3 +27,16 @@ function onSetFilterBy(elInput) {
 
   renderGallery()
 }
+
+function onNavgiateToGallery() {
+  console.log('ssss');
+
+  document.querySelector('.gallery-content').style.display = 'block'
+  document.querySelector('.meme-editor').style.display = 'none'
+}
+
+function navgiateToEditor() {
+  document.querySelector('.gallery-content').style.display = 'none'
+  document.querySelector('.meme-editor').style.display = 'grid'
+}
+

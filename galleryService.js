@@ -36,3 +36,4 @@ function getImages() {
 function setFilterBy(filterBy) {
   gFilterBy = filterBy
 }
+

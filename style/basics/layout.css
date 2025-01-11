@@ -39,8 +39,9 @@
 }
 
 .meme-editor {
-    display: grid;
-    grid-template-columns: 50px 1fr 1fr 50px;
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 5%;
     margin: 2.5em;
 }
 
@@ -54,9 +55,7 @@
 /* Search bar */
 
 .search-bar {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    padding: 50px;
+    display: flex;
 }
 
 .popular-categoires {

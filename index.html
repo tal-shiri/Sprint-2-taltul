@@ -12,9 +12,8 @@
   <header class="main-header">
     <div class="logo">Logo</div>
     <nav class="main-nav">
-      <div class="gallery">Gallery</div>
+      <div class="gallery" onclick="onNavgiateToGallery()">Gallery</div>
       <div class="about">About</div>
-      <div class="editor">Editor</div>
     </nav>
 
   </header>
@@ -104,16 +103,14 @@
 
     <section class="gallery-content">
       <div class="search-bar">
-        <input type="text" id="meme-text" name="meme-search" placeholder="Search...." oninput="onSetFilterBy(this)">
+        <input type="text" id="meme-text" name="meme-search" placeholder="Search...." oninput="onSetFilterBy(this)" />
         <div class="popular-categoires">
           <div class="funny">funny</div>
           <div class="cat">cat</div>
           <div class="drink">drink</div>
           <div class="happy">happy</div>
           <div class="sad">funny</div>
-
         </div>
-
       </div>
 
       <section class="gallery-imges">

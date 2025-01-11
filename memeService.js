@@ -1,4 +1,3 @@
-
 var gMeme = {
   selectedImgId: 5,
   selectedLineIdx: 0,
