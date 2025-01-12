@@ -12,12 +12,12 @@
   <div class="main-container">
 
     <header class="main-header">
-      <div class="logo">
+      <div class="logo" onclick="onNavgiateToGallery()">
         <img src="img/logo.svg" alt="logo" />
       </div>
       <nav class="main-nav">
-        <div class="gallery" onclick="onNavgiateToGallery()">Gallery</div>
-        <div class="about">About</div>
+        <div class="nav gallery" onclick="onNavgiateToGallery()">Gallery</div>
+        <div class="nav about">About</div>
       </nav>
       <div class="hamburger" onclick="toggleMenu()">
         ☰
@@ -58,6 +58,7 @@
           <div class="buttons-strip">
             <select class="font-input" name="font-select" id="font-selctor" onchange="onSetFont()">
               <option value="">Select Font</option>
+              <option value="Impact">Impact</option>
               <option value="Ariel">Ariel</option>
               <option value="Verdana">Verdana</option>
               <option value="Tahoma">Tahoma</option>
@@ -94,8 +95,11 @@
 
 
           <div class="share-container">
-            <button class="editor-button share">
-              <a href="#" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image</a>
+            <button class="editor-button">
+              <a class="fa-solid fa-download" href="#" onclick="onDownloadImg(this)" aria-hidden="false"
+                download="my-img.jpg">
+
+              </a>
             </button>
             <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImgFacebook(event)">
               <input name="img" id="imgData" type="hidden" />

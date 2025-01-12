@@ -47,11 +47,6 @@
     font-size: 18px;
 }
 
-.share {
-    width: max-content;
-    height: 50px;
-}
-
 .share-container {
     display: flex;
     gap: 10px;

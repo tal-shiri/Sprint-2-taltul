@@ -39,13 +39,14 @@ function addLineText(pos = { x: 0, y: 0 }) {
   const line = {
     pos: pos,
     txt: 'Text',
-    size: 30,
-    color: '',
+    size: 40,
+    color: 'white',
     id: gMeme.lines.length,
     aling: 'center',
-    font: 'Ariel',
+    font: 'Impact',
     isDrag: false,
   }
+
   gMeme.lines.push(line)
   gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
@@ -77,6 +78,9 @@ function setFont(font) {
   switch (font) {
     case 'Ariel':
       selctedLine.font = 'Ariel'
+      break;
+    case 'Impact':
+      selctedLine.font = 'Impact'
       break;
     case 'Verdana':
       selctedLine.font = 'Verdana'

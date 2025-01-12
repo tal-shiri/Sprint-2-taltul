@@ -33,7 +33,8 @@
     .main-nav {
         display: flex;
         grid-column: 3;
-        justify-content: space-evenly;
+        justify-content: end;
         align-items: center;
+        gap: 30px;
     }
 }

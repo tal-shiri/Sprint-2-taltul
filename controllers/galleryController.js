@@ -6,7 +6,7 @@ function renderGallery() {
   strHtml = ''
   images.forEach(img => {
 
-    strHtml += `<img src="${img.url}" data-id="${img.id}" onclick="onSelectImg(this)" />`
+    strHtml += `<div class="img-hover-zoom img-hover-zoom--xyz"> <img src="${img.url}" data-id="${img.id}" onclick="onSelectImg(this)" /></div>`
   })
 
   elGallery.innerHTML = strHtml
@@ -41,6 +41,9 @@ function onNavgiateToGallery() {
   document.querySelector('.gallery-content').style.display = 'block'
   document.querySelector('.gallery').style.textDecoration = 'underline'
   document.querySelector('.meme-editor').style.display = 'none'
+  gFilterBy = ''
+  renderGallery()
+
 }
 
 function navgiateToEditor() {

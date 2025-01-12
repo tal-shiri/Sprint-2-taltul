@@ -61,12 +61,14 @@ function drawRectangle(txt, size, align, x, y, isEditing) {
 
 
 function drawText(text, size, color, aling, font, x, y) {
-  gCtx.lineWidth = 2
-  gCtx.fillStyle = color
-  gCtx.font = `${size}px ${font}`
-  gCtx.textAlign = aling
-  gCtx.textBaseline = 'middle'
-  gCtx.fillText(text, x, y)
+  gCtx.lineWidth = size / 10;
+  gCtx.strokeStyle = 'black';
+  gCtx.fillStyle = color;
+  gCtx.font = `${size}px ${font}`;
+  gCtx.textAlign = aling;
+  gCtx.textBaseline = 'middle';
+  gCtx.strokeText(text, x, y);
+  gCtx.fillText(text, x, y);
 }
 
 function onEditText(elInput) {

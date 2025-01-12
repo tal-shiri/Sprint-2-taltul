@@ -8,3 +8,7 @@ canvas {
   margin: 0 auto;
 
 }
+
+.canvas-container {
+  align-self: center;
+}
